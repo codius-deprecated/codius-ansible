@@ -1,0 +1,8 @@
+---
+- name: Nodejs
+  hosts: nodejs
+  remote_user: ubuntu
+  sudo: yes
+  roles:
+    - common
+    - nodejs

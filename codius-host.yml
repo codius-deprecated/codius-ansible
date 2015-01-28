@@ -1,0 +1,9 @@
+---
+- name: Codius Host Nodejs Server
+  hosts: codius-host
+  remote_user: ubuntu
+  sudo: yes
+  roles:
+    - common
+    - nodejs
+    - codius-host
