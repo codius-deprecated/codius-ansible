@@ -18,5 +18,11 @@
   npm: path=/home/ubuntu/codius_host
 - name: rsa keygen
   shell: openssl req -new -nodes -x509 -subj "/C=US/ST=California/L=SanFrancisco/O=Engineering/CN=codius.host" -days 3650 -keyout server.key -out server.crt -extensions v3_ca creates=/etc/nginx/ssl/server.crt chdir=/home/ubuntu/codius_host
+- name: install DNS Masq
+  apt: name=dnsmasq state=present
+- name: setup DNS Masq
+  shell: echo 'address=/localcodius/127.0.0.1' | sudo tee --append /etc/dnsmasq.conf
+- name: restart dnsmasq
+  shell: sudo /etc/init.d/dnsmasq restart
 - name: start
   shell: nohup node app.js & chdir=/home/ubuntu/codius_host
